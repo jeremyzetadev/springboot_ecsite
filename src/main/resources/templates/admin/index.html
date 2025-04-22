@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"> <!-- th:replace="base::Layout(content)" -->
+<link th:replace="~{base::bootstrap}" rel="stylesheet" href="">
+<link th:replace="~{base::fontawesome}" rel="stylesheet" href="">
+<link rel="stylesheet" href="/css/style.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="~{base::nav}">THIS IS LOGIN NAV</nav>
+<section>
+    <div class="container">
+        <p class="text-center fs-3 mt-2">Admin DashBoard</p>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card card-sh justify-content-center" style="height:130px;">
+                        <div class="card-body text-center text-primary">
+                            <i class="fa-solid fa-square-plus fa-3x"></i>
+                            <h4>Add Product</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card card-sh justify-content-center" style="height:130px;">
+                        <div class="card-body text-center text-warning">
+                            <i class="fa-solid fa-list fa-3x"></i>
+                            <h4>Category</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card card-sh justify-content-center" style="height:130px;">
+                        <div class="card-body text-center text-success">
+                            <i class="fa-solid fa-gifts fa-3x"></i>
+                            <h4>View Product</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card card-sh justify-content-center" style="height:130px;">
+                        <div class="card-body text-center text-warning">
+                            <i class="fa-solid fa-cart-plus fa-3x"></i>
+                            <h4>Orders</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card card-sh justify-content-center" style="height:130px;">
+                        <div class="card-body text-center text-primary">
+                            <i class="fa-solid fa-person fa-3x"></i>
+                            <h4>Users</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card card-sh justify-content-center" style="height:130px;">
+                        <div class="card-body text-center text-primary">
+                            <i class="fa-solid fa-user-tie fa-3x"></i>
+                            <h4>Admin</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="~{base::footer}"></div>
+</body>
+<script th:replace="~{base::jsb1}"></script>
+<script th:replace="~{base::jsb2}"></script>
+</html>
