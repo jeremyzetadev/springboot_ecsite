@@ -8,13 +8,13 @@
     <title>Title</title>
 </head>
 <body>
-<nav th:replace="~{base::nav}">THIS IS LOGIN NAV</nav>
+<nav th:replace="~{base::nav}"></nav>
 <section>
     <div class="container">
         <p class="text-center fs-3 mt-2">Admin DashBoard</p>
         <div class="row mt-4 mb-4">
             <div class="col-md-4">
-                <a href="#" class="text-decoration-none">
+                <a href="/admin/add_product" class="text-decoration-none">
                     <div class="card card-sh justify-content-center" style="height:130px;">
                         <div class="card-body text-center text-primary">
                             <i class="fa-solid fa-square-plus fa-3x"></i>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-md-4">
-                <a href="#" class="text-decoration-none">
+                <a href="/admin/category" class="text-decoration-none">
                     <div class="card card-sh justify-content-center" style="height:130px;">
                         <div class="card-body text-center text-warning">
                             <i class="fa-solid fa-list fa-3x"></i>
