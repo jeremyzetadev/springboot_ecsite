@@ -8,3 +8,7 @@
 (sending data from backend to html page) <br>
 	**Example:**
 ![image](https://github.com/user-attachments/assets/75f9549f-2f5a-4373-9134-a8acc03ba8f8)
+
+# Java @Session
+(sending data from backend to html page)
+![image](https://github.com/user-attachments/assets/8ca41c54-63a4-410c-8eaf-1b0d0da4c261)
