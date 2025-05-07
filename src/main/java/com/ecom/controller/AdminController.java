@@ -1,6 +1,8 @@
 package com.ecom.controller;
 import com.ecom.model.Category;
+import com.ecom.model.Product;
 import com.ecom.service.CategoryService;
+import com.ecom.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -16,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,13 +27,19 @@ public class AdminController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("/")
     public String index(){
       return "admin/index";
     }
 
     @GetMapping("/add_product")
-    public String loadAddProduct(){
+    public String add_product(Model m){
+        //public String loadAddProduct(Model m){
+        List<Category> categories = categoryService.getAllCategory();
+        m.addAttribute("categories",categories);
         return "admin/add_product";
     }
 
@@ -98,12 +107,31 @@ public class AdminController {
             if(!file.isEmpty()){
                 File saveFile = new ClassPathResource("static/img").getFile();
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator + file.getOriginalFilename());
+                System.out.println(path);
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
             }
                 session.setAttribute("succMsg","Category update success");
             } else {
-                session.setAttribute("errorMsg","Something wrong on server");
+                session.setAttribute("errorMsg","Something wrong on server - CategoryProcess Fail");
             }
         return "redirect:/admin/edit_category/" + category.getId();
+    }
+
+
+    @PostMapping("/saveProduct")
+    public String saveProduct(@ModelAttribute Product product,@RequestParam("file") MultipartFile image, HttpSession session) throws IOException{
+        String imageName = (image.isEmpty() ? "default.jpg" : image.getOriginalFilename());
+        product.setImage(imageName);
+        Product saveProduct = productService.saveProduct(product);
+        if(!ObjectUtils.isEmpty(saveProduct)){
+            File saveFile = new ClassPathResource("static/img").getFile();
+            Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "product_img" + File.separator + image.getOriginalFilename());
+            System.out.println(path);
+            Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            session.setAttribute("succMsg", "Product Saved Success");
+        } else {
+            session.setAttribute("errrMsg","Something wrong on server - ProductProcess Fail");
+        }
+        return "redirect:/admin/add_product";
     }
 }
