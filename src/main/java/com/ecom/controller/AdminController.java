@@ -134,4 +134,21 @@ public class AdminController {
         }
         return "redirect:/admin/add_product";
     }
+
+    @GetMapping("/products")
+    public String viewProducts(Model m){
+        m.addAttribute("products",productService.getAllProducts());
+        return "admin/products";
+    }
+
+    @GetMapping("/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable int id, HttpSession session){
+        Boolean isProductDeleted = productService.deleteProduct(id);
+        if(isProductDeleted){
+            session.setAttribute("succMsg", "Product delete success");
+        } else {
+            session.setAttribute("errorMsg", "Something wrong on server");
+        }
+        return "redirect:/admin/products";
+    }
 }
