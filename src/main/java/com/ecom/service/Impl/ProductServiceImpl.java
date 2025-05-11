@@ -60,6 +60,12 @@ public class ProductServiceImpl implements ProductService {
         dbProduct.setStock(product.getStock());
         dbProduct.setImage(imageName);
 
+        dbProduct.setDiscount(product.getDiscount());
+        // 5% => 5/100
+        double discount = product.getPrice() * (product.getDiscount()/100.0);
+        double discountPrice = product.getPrice()-discount;
+        dbProduct.setDiscountPrice(discountPrice);
+
         Product updateProduct = productRepository.save(dbProduct);
 
         if(!ObjectUtils.isEmpty(updateProduct)){
