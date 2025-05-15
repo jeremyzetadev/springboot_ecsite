@@ -32,10 +32,16 @@
                 <div class="card shadow-sm p-0 mb-5 bg-body-tertiary rounded">
                     <div class="card-body">
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action active">
+                            <p class="fs-4">Category</p>
+                            <a href="/products"
+                               th:classappend="${paramValue==''} ? 'active' : ''"
+                               class="list-group-item list-group-item-action">
                                 Categories
                             </a>
-                            <a href="#" th:each="c:${categories}" class="list-group-item list-group-item-action">[[${c.name}]]</a>
+                            <a th:each="c:${categories}"
+                               th:href="@{'/products?category='+ ${c.name}}"
+                               th:classappend="${paramValue==c.name} ? 'active' : ''"
+                               class="list-group-item list-group-item-action">[[${c.name}]]</a>
                         </div>
                     </div>
                 </div>
@@ -45,8 +51,9 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="fs-3 text-center">Products</p>
-
                         <div class="row">
+                            <th:block th:if="${products.size}">
+
                             <div class="col-md" th:each="p:${products}">
                                 <div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                                     <div class="card-body text-center">
@@ -58,11 +65,17 @@
                                                 <span class="text-decoration-line-through text-secondary">[[${p.price}]]</span>
                                                 <span class="fs-6 text-success">[[${p.discount}]]% off</span>
                                             </p>
-                                            <a href="/view_product" class="btn btn-primary col-md-6 offset-md-3">View Details</a>
+<!--                                            <a href="/view_product" class="btn btn-primary col-md-6 offset-md-3">View Details</a>-->
+                                            <a th:href="@{'/view_product/' + ${p.id}}" class="btn btn-primary col-md-6 offset-md-3">View Details</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            </th:block>
+                            <th:block th:unless="${products.size}">
+                            <p class="fs-4 text-center mt-4">Product not available</p>
+                            </th:block>
                             <!--            TODO : remove after backend implement    -->
                         </div>
                     </div>
