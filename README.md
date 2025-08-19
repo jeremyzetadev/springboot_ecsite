@@ -12,3 +12,6 @@
 # Java @Session
 (sending data from backend to html page)
 ![image](https://github.com/user-attachments/assets/8ca41c54-63a4-410c-8eaf-1b0d0da4c261)
+
+# Form to router
+<img width="1056" height="1766" alt="image" src="https://github.com/user-attachments/assets/00418e09-8415-45cb-b772-89719217d189" />
