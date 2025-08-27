@@ -7,7 +7,7 @@
 (sending data from form to backend) <br>
 (sending data from backend to html page) <br>
 	**Example:**
-![image](https://github.com/user-attachments/assets/75f9549f-2f5a-4373-9134-a8acc03ba8f8)
+<img width="1342" height="1544" alt="image" src="https://github.com/user-attachments/assets/1ac7debe-47ca-41f3-a544-9329f1d91e85" />
 
 # Java @Session
 (sending data from backend to html page)
