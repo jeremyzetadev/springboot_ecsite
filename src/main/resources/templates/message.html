@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org"> <!-- th:replace="base::Layout(content)" -->
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:replace="~{base::bootstrap}" rel="stylesheet" href="">
+    <link th:replace="~{base::fontawesome}" rel="stylesheet" href="">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav th:replace="~{base::nav}">THIS IS LOGIN NAV</nav>
+
+<section>
+    <div class="container mt-5 p-5">
+        <div class="row">
+            <div class="col-md-6 p-5 text-center offset-md-3">
+                <h3>[[${msg}]]</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="~{base::footer}"></div>
+</body>
+<script th:replace="~{base::jsb1}"></script>
+</html>

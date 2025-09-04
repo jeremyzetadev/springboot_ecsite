@@ -21,4 +21,10 @@ public interface UserService {
 
     // #TODO need IMPLEMENT
     public void resetAttempt(int userId);
+
+    void updateUserResetToken(String email, String resetToken);
+
+    public UserDtls getUserByToken(String token);
+
+    public UserDtls updateUser(UserDtls user);
 }
