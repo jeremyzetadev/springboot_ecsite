@@ -168,8 +168,8 @@ public class HomeController {
             userByToken.setPassword(passwordEncoder.encode(password));
             userByToken.setResetToken(null);
             userService.updateUser(userByToken);
-            session.setAttribute("msg", "Password change successfully");
-            return "messaqge";
+            m.addAttribute("msg", "Password change successfully");
+            return "message";
         }
     }
 
