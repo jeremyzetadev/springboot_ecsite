@@ -1,6 +1,7 @@
 package com.ecom.controller;
 
 import com.ecom.repository.ProductRepository;
+import com.ecom.service.CartService;
 import com.ecom.service.CategoryService;
 import com.ecom.service.ProductService;
 import com.ecom.service.UserService;
@@ -56,6 +57,8 @@ public class HomeController {
             String email = p.getName();
             UserDtls userDtls = userService.getUserByEmail(email);
             m.addAttribute("user", userDtls);
+        } else {
+            m.addAttribute("user",null);
         }
 
         List<Category> allActiveCategory = categoryService.getAllActiveCategory();
