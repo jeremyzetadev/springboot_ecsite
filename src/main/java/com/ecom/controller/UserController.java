@@ -3,6 +3,7 @@ package com.ecom.controller;
 import com.ecom.model.Cart;
 import com.ecom.model.Category;
 import com.ecom.model.UserDtls;
+import com.ecom.repository.UserRepository;
 import com.ecom.service.CartService;
 import com.ecom.service.CategoryService;
 import com.ecom.service.UserService;
@@ -37,6 +38,23 @@ public class UserController {
         return "user/home";
     }
 
+
+    @ModelAttribute
+    public void getUserDetails(Principal p, Model m){
+        if(p!=null){
+            String email = p.getName();
+            UserDtls userDtls = userService.getUserByEmail(email);
+            m.addAttribute("user", userDtls);
+            Integer countCart = cartService.getCountCart(userDtls.getId());
+            m.addAttribute("countCart", countCart);
+        } else {
+            m.addAttribute("user",null);
+        }
+
+        List<Category> allActiveCategory = categoryService.getAllActiveCategory();
+        m.addAttribute("categorys",allActiveCategory);
+    }
+
     @GetMapping("/addCart")
     public String addToCart(@RequestParam Integer pid, @RequestParam Integer uid, HttpSession session){
         Cart saveCart = cartService.saveCart(pid,uid);
@@ -48,4 +66,28 @@ public class UserController {
         return "redirect:/view_product/" +pid;
     }
 
+    @GetMapping("/cart")
+    public String loadCartPage(Principal p, Model m){
+        UserDtls user = getLoggedInUserDetails(p);
+        List<Cart> carts = cartService.getCartsByUser(user.getId());
+        m.addAttribute("carts", carts);
+
+        if(carts.size()>0){
+            Double totalOrderPrice = carts.get(carts.size()-1).getTotalOrderPrice();
+            m.addAttribute("totalOrderPrice", totalOrderPrice);
+        }
+        return "/user/cart";
+    }
+
+    @GetMapping("/cartQuantityUpdate")
+    public String updateCartQuantity(@RequestParam String symbol, @RequestParam Integer cid){
+        cartService.updateQuantity(symbol,cid);
+        return "redirect:/user/cart";
+    }
+
+    private UserDtls getLoggedInUserDetails(Principal p) {
+        String email = p.getName();
+        UserDtls userDtls = userService.getUserByEmail(email);
+        return userDtls;
+    }
 }

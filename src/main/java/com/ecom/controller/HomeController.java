@@ -51,12 +51,17 @@ public class HomeController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private CartService cartService;
+
     @ModelAttribute
     public void getUserDetails(Principal p, Model m){
         if(p!=null){
             String email = p.getName();
             UserDtls userDtls = userService.getUserByEmail(email);
             m.addAttribute("user", userDtls);
+            Integer countCart = cartService.getCountCart(userDtls.getId());
+            m.addAttribute("countCart", countCart);
         } else {
             m.addAttribute("user",null);
         }
