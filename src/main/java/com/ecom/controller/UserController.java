@@ -90,4 +90,9 @@ public class UserController {
         UserDtls userDtls = userService.getUserByEmail(email);
         return userDtls;
     }
+
+    @GetMapping("/orders")
+    public String orderPage(){
+        return "/user/order";
+    }
 }
